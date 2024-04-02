@@ -1,13 +1,14 @@
 'use strict';
 
 //  imports
-import { domElements } from './domElements';
+import { domElements } from './domElements.js';
 // ------------------------------------------------
 // FUNCTIONS
 // ------------------------------------------------
 
 // ------- modal functions
-const openModal = function () {
+const openModal = function (e) {
+  e.preventDefault();
   domElements.modal.classList.remove('hidden');
   domElements.overlay.classList.remove('hidden');
 };
@@ -22,9 +23,9 @@ const closeModal = function () {
 
 // ------- modal eventListeners
 
-for (let btn in domElements.btnsOpenModal) {
-  btn.addEventListener('click', openModal);
-}
+domElements.btnsOpenModal.forEach(btnM =>
+  btnM.addEventListener('click', openModal)
+);
 
 domElements.btnCloseModal.addEventListener('click', closeModal);
 domElements.overlay.addEventListener('click', closeModal);
