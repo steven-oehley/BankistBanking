@@ -321,7 +321,7 @@ h4 {
 }
 
 .operations__content--active {
-  display: grid;
+  display: block;
   grid-template-columns: 7rem 1fr;
   column-gap: 3rem;
   row-gap: 0.5rem;

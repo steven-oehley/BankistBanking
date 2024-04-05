@@ -108,3 +108,35 @@ domElements.navUlEl.addEventListener('click', e => {
     document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
   }
 });
+
+// ------- tabs component
+
+// event delegation - so add event listener to common parent
+domElements.tabsContainer.addEventListener('click', e => {
+  const clickedTab = e.target.closest('.operations__tab');
+  console.log(clickedTab);
+  // guard clause to return early if null
+  if (!clickedTab) return;
+
+  // switch classes
+  domElements.allTabs.forEach(tab =>
+    tab.classList.remove('operations__tab--active')
+  );
+  clickedTab.classList.add('operations__tab--active');
+
+  // activate content area
+
+  // const targetContent = document.querySelector(
+  //   `.operations__content--${clikedTab.dataset.tab}`
+  // );  OR
+  // get data attribute from dataset or with get attribute
+  // get data-tab with get attribute
+  const targetContent = clickedTab.getAttribute('data-tab');
+  console.log(targetContent);
+  domElements.alltabsContent.forEach(
+    tc => tc.classList.remove('operations__content--active') // ! no dot needed for adding and removing classes
+  );
+  document
+    .querySelector(`.operations__content--${targetContent}`)
+    .classList.add('operations__content--active');
+});
