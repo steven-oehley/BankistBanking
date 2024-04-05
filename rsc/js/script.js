@@ -30,16 +30,33 @@ message.style.width = '80%';
 // ------------------------------------------------
 
 // ------- modal functions
-const openModal = function (e) {
+function openModal(e) {
   e.preventDefault();
   domElements.modal.classList.remove('hidden');
   domElements.overlay.classList.remove('hidden');
-};
+}
 
-const closeModal = function () {
+function closeModal() {
   domElements.modal.classList.add('hidden');
   domElements.overlay.classList.add('hidden');
-};
+}
+
+function handleHover(e, opacityToSet) {
+  if (e.target.classList.contains('nav__link')) {
+    // here can't accidentally click on an element like span so can use .parentElement
+    const targetLink = e.target;
+    const logo = targetLink.closest('.nav').querySelector('img');
+    domElements.allNavLinks.forEach(link => {
+      // Check if the link is not the targetLink
+      if (link !== targetLink) {
+        // Apply the style change to links that are not the targetLink
+        link.style.opacity = opacityToSet;
+      }
+    });
+
+    logo.style.opacity = opacityToSet;
+  }
+}
 // ------------------------------------------------
 // EVENT LISTENERS
 // ------------------------------------------------
@@ -113,7 +130,7 @@ domElements.navUlEl.addEventListener('click', e => {
 
 // event delegation - so add event listener to common parent
 domElements.tabsContainer.addEventListener('click', e => {
-  const clickedTab = e.target.closest('.operations__tab');
+  const clickedTab = e.target.closest('.operations__tab'); // here closest makes sense as could accidentally click on span
   console.log(clickedTab);
   // guard clause to return early if null
   if (!clickedTab) return;
@@ -140,3 +157,9 @@ domElements.tabsContainer.addEventListener('click', e => {
     .querySelector(`.operations__content--${targetContent}`)
     .classList.add('operations__content--active');
 });
+
+// ------- menu fade navigation
+//  ! example of passsing arguments to event handlers
+// use mouseover as mousenter does not bubble
+domElements.navEl.addEventListener('mouseover', e => handleHover(e, '0.5'));
+domElements.navEl.addEventListener('mouseout', e => handleHover(e, '1')); // could also use bind

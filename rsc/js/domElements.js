@@ -17,4 +17,6 @@ export const domElements = {
   allTabs: document.querySelectorAll('.operations__tab'),
   tabsContainer: document.querySelector('.operations__tab-container'),
   alltabsContent: document.querySelectorAll('.operations__content'),
+  // nav
+  navEl: document.querySelector('.nav'),
 };
