@@ -11,6 +11,7 @@ import { domElements } from './domElements.js';
 // ------------------------------------------------
 
 const bgColDark = '#37383d';
+const initialCoords = domElements.sectionOne.getBoundingClientRect();
 
 // ------------------------------------------------
 // ELEMENT CREATION
@@ -163,3 +164,36 @@ domElements.tabsContainer.addEventListener('click', e => {
 // use mouseover as mousenter does not bubble
 domElements.navEl.addEventListener('mouseover', e => handleHover(e, '0.5'));
 domElements.navEl.addEventListener('mouseout', e => handleHover(e, '1')); // could also use bind
+
+// ------- Sticky navigation
+
+// ! poor performance with scroll event, especially on mobile
+/* window.addEventListener('scroll', () => {
+  if (window.scrollY > initialCoords.top) {
+    domElements.navEl.classList.add('sticky');
+  } else {
+    domElements.navEl.classList.remove('sticky');
+  }
+});
+ */
+
+// ! better way with Intersection Observer API
+const navHeight = domElements.navEl.getBoundingClientRect().height;
+
+function stickyNav(entries, observer) {
+  const [entry] = entries; // Destructure the entries array to get the first entry
+  if (!entry.isIntersecting) {
+    domElements.navEl.classList.add('sticky');
+  } else {
+    domElements.navEl.classList.remove('sticky');
+  }
+}
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null, // Use the viewport as the root
+  threshold: 0, // Detect intersection when any part of the target is visible
+  rootMargin: `-${navHeight}px 0px`, // Apply a top margin of navHeight pixels
+});
+
+// Start observing the header
+headerObserver.observe(domElements.headerEl);
