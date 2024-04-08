@@ -178,22 +178,25 @@ domElements.navEl.addEventListener('mouseout', e => handleHover(e, '1')); // cou
  */
 
 // ! better way with Intersection Observer API
-const navHeight = domElements.navEl.getBoundingClientRect().height;
-
-function stickyNav(entries, observer) {
-  const [entry] = entries; // Destructure the entries array to get the first entry
+// ! how intersection observer api works
+// allows to track how a target element intersects another element or the viewport
+function observerCallback(entries, observer) {
+  // takes entries and observer itself as arguments
+  // Each entry describes an intersection change for one observed target element
+  const [entry] = entries; // take out first entry
   if (!entry.isIntersecting) {
     domElements.navEl.classList.add('sticky');
   } else {
     domElements.navEl.classList.remove('sticky');
   }
 }
-
-const headerObserver = new IntersectionObserver(stickyNav, {
-  root: null, // Use the viewport as the root
-  threshold: 0, // Detect intersection when any part of the target is visible
-  rootMargin: `-${navHeight}px 0px`, // Apply a top margin of navHeight pixels
-});
-
-// Start observing the header
-headerObserver.observe(domElements.headerEl);
+const observerOptions = {
+  root: null, // what we are checking for if the target element intersects - can be another element or viewport - null (viewport)
+  threshold: 0, // percentage of target and root intersecting - when threshold met, callback fires - 0.2 = 20% for example (can specify an array of thresholds)
+  rootMargin: `-${domElements.navEl.getBoundingClientRect().height}px`, //without this there is would be an overlap of nav and section one, positive will add negative will take away
+};
+const headerObserver = new IntersectionObserver(
+  observerCallback,
+  observerOptions
+); // takes call back and object of options
+headerObserver.observe(domElements.headerEl); // tells observer what target element to observe - this case sectionOne
