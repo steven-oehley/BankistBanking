@@ -200,3 +200,21 @@ const headerObserver = new IntersectionObserver(
   observerOptions
 ); // takes call back and object of options
 headerObserver.observe(domElements.headerEl); // tells observer what target element to observe - this case sectionOne
+
+// ------- Reveal elements on scroll
+// used with css opacity and transform: translate(8rem)
+const sectionObsOptions = { target: null, threshold: 0.25 };
+function sectionObsCallback(entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.isIntersecting && entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry); // unobserve for performance
+}
+const sectionObserver = new IntersectionObserver(
+  sectionObsCallback,
+  sectionObsOptions
+);
+domElements.allSections.forEach(section => {
+  section.classList.add('section--hidden');
+  sectionObserver.observe(section);
+});

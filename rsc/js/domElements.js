@@ -9,6 +9,7 @@ export const domElements = {
   // learn more btn
   btnScrollTo: document.querySelector('.btn--scroll-to'),
   // sections
+  allSections: document.querySelectorAll('.section'),
   sectionOne: document.querySelector('#section--1'),
   // nav elements
   allNavLinks: document.querySelectorAll('.nav__link'),
