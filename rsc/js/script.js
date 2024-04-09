@@ -212,7 +212,7 @@ function sectionObsCallback(entries, observer) {
   const [entry] = entries;
   if (!entry.isIntersecting) return;
   entry.isIntersecting && entry.target.classList.remove('section--hidden');
-  observer.unobserve(section); // unobserve for performance
+  observer.unobserve(entry.target); // unobserve for performance
 }
 const sectionObserver = new IntersectionObserver(
   sectionObsCallback,
@@ -257,12 +257,14 @@ function goToSlide(slide) {
 function nextSlide() {
   currentSlide = (currentSlide + 1) % maxSlide; // Update currentSlide index
   goToSlide(currentSlide); // Display the new slide
+  activateDot(currentSlide);
 }
 
 // Function to move to the previous slide
 function prevSlide() {
   currentSlide = (currentSlide - 1 + maxSlide) % maxSlide; // Update currentSlide index
   goToSlide(currentSlide); // Display the new slide
+  activateDot(currentSlide);
 }
 
 // Add event listeners to the slider navigation buttons
@@ -283,9 +285,29 @@ function createDots() {
     domElements.dotContainer.insertAdjacentHTML(
       'beforeend',
       `
-    <button class="dots_dot" data-slide="${index}"></button>`
+    <button class="dots__dot" data-slide="${index}"></button>`
     );
   });
 }
 
+function activateDot(slide) {
+  domElements.dotContainer
+    .querySelectorAll('.dots__dot')
+    .forEach(dot => dot.classList.remove('dots__dot--active'));
+  const selectedDot = document.querySelector(
+    `.dots__dot[data-slide="${slide}"]`
+  );
+  selectedDot.classList.add('dots__dot--active');
+}
+
 createDots();
+activateDot(currentSlide);
+
+// event delegation for dots
+domElements.dotContainer.addEventListener('click', e => {
+  if (e.target.classList.contains('dots__dot')) {
+    const { slide } = e.target.dataset;
+    goToSlide(slide);
+    activateDot(slide);
+  }
+});
