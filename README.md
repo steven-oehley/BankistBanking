@@ -46,13 +46,13 @@ Our website is not just about humor; it's backed by solid technical implementati
 - Scroll-to-Top Button: A button appears when scrolling past the header section, allowing users to return to the top of the page.
 - Tabbed Component: Our website features a tabbed component that allows users to explore different aspects of RoboDev Pro seamlessly. Clicking on tabs displays relevant content instantly, enhancing user engagement.
 
-3. Modal
+3. Modal:<br>
    We use a modal for sign-up and other interactions, ensuring a focused user experience without navigating away from the current page context.
 
-4. Slider
+4. Slider:<br>
    The slider component showcases various sections of the website in an interactive manner. Users can navigate between slides using navigation buttons or keyboard shortcuts.
 
-5. Cookie Message
+5. Cookie Message:<br>
    We have a cookie message that pops up to inform users about our cookie policy. It's a tongue-in-cheek addition that adds to the overall humorous tone of the website.
 
 **RoboDev Pro** is more than just a website; it's a lifestyle choice. With our AI-driven approach to software development, you can kiss job satisfaction goodbye and embrace the future of unemployment!
