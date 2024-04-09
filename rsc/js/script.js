@@ -225,7 +225,11 @@ function loadImages(entries, observer) {
   const [entry] = entries;
   if (!entry.isIntersecting) return;
   entry.target.src = `${entry.target.dataset.src}`;
-  entry.target.classList.remove('lazy-img');
+  // entry.target.classList.remove('lazy-img'); dont do this else you will unblur before load
+  entry.target.addEventListener('load', () =>
+    entry.target.classList.remove('lazy-img')
+  );
+  observer.unobserve(entry.target);
 }
 const imgObserverOptions = { target: null, threshold: 0.2 };
 const imgObserver = new IntersectionObserver(loadImages, imgObserverOptions);
