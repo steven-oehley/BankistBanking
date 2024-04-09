@@ -54,8 +54,6 @@ function handleHover(e, opacityToSet) {
         link.style.opacity = opacityToSet;
       }
     });
-
-    logo.style.opacity = opacityToSet;
   }
 }
 // ------------------------------------------------
@@ -122,17 +120,18 @@ domElements.navUlEl.addEventListener('click', e => {
     !e.target.classList.contains('nav__link--btn') // exclude the open account nav__link
   ) {
     const targetId = e.target.getAttribute('href');
-    console.log(document.querySelector(targetId));
     document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
   }
 });
 
+domElements.btnToTop.addEventListener('click', () =>
+  domElements.headerEl.scrollIntoView({ behavior: 'smooth' })
+);
 // ------- tabs component
 
 // event delegation - so add event listener to common parent
 domElements.tabsContainer.addEventListener('click', e => {
   const clickedTab = e.target.closest('.operations__tab'); // here closest makes sense as could accidentally click on span
-  console.log(clickedTab);
   // guard clause to return early if null
   if (!clickedTab) return;
 
@@ -186,8 +185,10 @@ function observerCallback(entries, observer) {
   const [entry] = entries; // take out first entry
   if (!entry.isIntersecting) {
     domElements.navEl.classList.add('sticky');
+    domElements.btnToTop.classList.remove('hidden');
   } else {
     domElements.navEl.classList.remove('sticky');
+    domElements.btnToTop.classList.add('hidden');
   }
 }
 const observerOptions = {
@@ -218,3 +219,14 @@ domElements.allSections.forEach(section => {
   section.classList.add('section--hidden');
   sectionObserver.observe(section);
 });
+
+// ------- Lazy Load Images
+function loadImages(entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.src = `${entry.target.dataset.src}`;
+  entry.target.classList.remove('lazy-img');
+}
+const imgObserverOptions = { target: null, threshold: 0 };
+const imgObserver = new IntersectionObserver(loadImages, imgObserverOptions);
+domElements.lazyImages(img => imgObserver.observe(img));

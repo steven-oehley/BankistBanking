@@ -116,7 +116,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 9rem;
+  height: 6rem;
   width: 100%;
   padding: 0 6rem;
   z-index: 100;
@@ -662,6 +662,8 @@ h4 {
 /* COOKIE MESSAGE */
 .cookie-message {
   display: flex;
+  position: fixed;
+  bottom: 0;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
@@ -670,4 +672,11 @@ h4 {
   font-size: 1.5rem;
   font-weight: 400;
   padding: 1em 0;
+  z-index: 9999;
+}
+
+.btn-to-top {
+  position: fixed;
+  right: 5px;
+  bottom: 20px;
 }

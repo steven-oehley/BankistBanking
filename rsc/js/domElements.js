@@ -20,4 +20,8 @@ export const domElements = {
   alltabsContent: document.querySelectorAll('.operations__content'),
   // nav
   navEl: document.querySelector('.nav'),
+  //lazy load images
+  lazyImages: document.querySelectorAll('img[data-src]'),
+  // to top button
+  btnToTop: document.querySelector('.btn-to-top'),
 };
