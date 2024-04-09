@@ -194,7 +194,10 @@ function observerCallback(entries, observer) {
 const observerOptions = {
   root: null, // what we are checking for if the target element intersects - can be another element or viewport - null (viewport)
   threshold: 0, // percentage of target and root intersecting - when threshold met, callback fires - 0.2 = 20% for example (can specify an array of thresholds)
-  rootMargin: `-${domElements.navEl.getBoundingClientRect().height}px`, //without this there is would be an overlap of nav and section one, positive will add negative will take away
+  rootMargin: `-${
+    domElements.navEl.getBoundingClientRect().height
+  }px 0px 0px 0px`, //without this there is would be an overlap of nav and section one, positive will add negative will take away
+  // only add margin to top
 };
 const headerObserver = new IntersectionObserver(
   observerCallback,
@@ -231,6 +234,6 @@ function loadImages(entries, observer) {
   );
   observer.unobserve(entry.target);
 }
-const imgObserverOptions = { target: null, threshold: 0.2 };
+const imgObserverOptions = { target: null, threshold: 0, rootMargin: '300px' };
 const imgObserver = new IntersectionObserver(loadImages, imgObserverOptions);
 domElements.lazyImages.forEach(img => imgObserver.observe(img));
