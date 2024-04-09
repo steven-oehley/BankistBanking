@@ -35,7 +35,7 @@ Don't just take our word for it. Hear from real users who have embraced the Robo
 
 Our website is not just about humor; it's backed by solid technical implementations to provide a smooth and engaging user experience.
 
-1. Smooth Scroll
+1. Smooth Scroll:<br>
    We use modern CSS features and JavaScript to achieve smooth scrolling throughout the website. Clicking on navigation links smoothly scrolls to the desired sections.
 
 2. Intersection Observer API
