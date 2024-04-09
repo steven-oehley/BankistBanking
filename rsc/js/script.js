@@ -268,6 +268,13 @@ function prevSlide() {
 // Add event listeners to the slider navigation buttons
 domElements.btnSliderR.addEventListener('click', nextSlide);
 domElements.btnSliderL.addEventListener('click', prevSlide);
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') {
+    nextSlide();
+  } else if (e.key === 'ArrowLeft') {
+    prevSlide();
+  }
+});
 
 // Initially display the first slide
 goToSlide(currentSlide);
