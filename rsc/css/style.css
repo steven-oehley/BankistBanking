@@ -695,10 +695,15 @@ h4 {
   font-size: 2rem;
 }
 
+footer {
+  text-align: center;
+}
+
 .footer-text {
   text-align: center;
-  color: var(--color-tertiary);
+  color: var(--text-primary);
   font-size: 4rem;
+  text-shadow: 5px 4px 11px rgba(192, 38, 211, 1);
 }
 
 .robo-dev {

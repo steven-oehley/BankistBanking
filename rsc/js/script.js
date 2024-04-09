@@ -20,7 +20,7 @@ const initialCoords = domElements.sectionOne.getBoundingClientRect();
 // ------- create a cookie message
 const message = document.createElement('div');
 message.classList.add('cookie-message');
-message.innerHTML = `We use cookies for improved functionality and analytics. <button class="btn btn--close--cookie">Got it!</button>`;
+message.innerHTML = `We use cookies for improved functionality and analytics (not really but seems professional) <button class="btn btn--close--cookie">Got it!</button>`;
 
 domElements.headerEl.append(message);
 message.style.backgroundColor = bgColDark;
