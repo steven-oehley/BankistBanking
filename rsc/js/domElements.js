@@ -26,7 +26,7 @@ export const domElements = {
   btnToTop: document.querySelector('.btn-to-top'),
   // slides
   slider: document.querySelector('.slider'),
-  imageSlides: document.querySelectorAll('.slide'),
+  slides: document.querySelectorAll('.slide'),
   btnSliderL: document.querySelector('.slider__btn--left'),
   btnSliderR: document.querySelector('.slider__btn--right'),
 };

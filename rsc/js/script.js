@@ -240,32 +240,34 @@ domElements.lazyImages.forEach(img => imgObserver.observe(img));
 
 // ------- Slider Component
 
+// Initialize slider variables
 let currentSlide = 0;
-const maxSlide = domElements.imageSlides.length;
+const maxSlide = domElements.slides.length;
 
+// Function to show a specific slide
 function goToSlide(slide) {
-  domElements.imageSlides.forEach(
-    (s, index) => (s.style.transform = `translateX(${(index - slide) * 100}%)`)
-  );
+  // Loop through all slides
+  domElements.slides.forEach((s, index) => {
+    // Calculate and set the transform property to display the slide
+    s.style.transform = `translateX(${(index - slide) * 100}%)`;
+  });
 }
 
+// Function to move to the next slide
 function nextSlide() {
-  if (currentSlide === maxSlide - 1) {
-    currentSlide = 0;
-  } else {
-    currentSlide++;
-  }
-  goToSlide(currentSlide);
+  currentSlide = (currentSlide + 1) % maxSlide; // Update currentSlide index
+  goToSlide(currentSlide); // Display the new slide
 }
 
+// Function to move to the previous slide
 function prevSlide() {
-  if (currentSlide === 0) {
-    currentSlide = maxSlide - 1;
-  } else {
-    currentSlide--;
-  }
-  goToSlide(currentSlide);
+  currentSlide = (currentSlide - 1 + maxSlide) % maxSlide; // Update currentSlide index
+  goToSlide(currentSlide); // Display the new slide
 }
 
+// Add event listeners to the slider navigation buttons
 domElements.btnSliderR.addEventListener('click', nextSlide);
 domElements.btnSliderL.addEventListener('click', prevSlide);
+
+// Initially display the first slide
+goToSlide(currentSlide);
