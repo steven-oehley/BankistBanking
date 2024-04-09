@@ -227,6 +227,6 @@ function loadImages(entries, observer) {
   entry.target.src = `${entry.target.dataset.src}`;
   entry.target.classList.remove('lazy-img');
 }
-const imgObserverOptions = { target: null, threshold: 0 };
+const imgObserverOptions = { target: null, threshold: 0.2 };
 const imgObserver = new IntersectionObserver(loadImages, imgObserverOptions);
-domElements.lazyImages(img => imgObserver.observe(img));
+domElements.lazyImages.forEach(img => imgObserver.observe(img));
