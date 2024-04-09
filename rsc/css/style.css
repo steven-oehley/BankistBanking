@@ -695,10 +695,6 @@ h4 {
   font-size: 2rem;
 }
 
-footer {
-  text-align: center;
-}
-
 .footer-text {
   text-align: center;
   color: var(--text-primary);
