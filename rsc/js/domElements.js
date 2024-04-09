@@ -29,4 +29,5 @@ export const domElements = {
   slides: document.querySelectorAll('.slide'),
   btnSliderL: document.querySelector('.slider__btn--left'),
   btnSliderR: document.querySelector('.slider__btn--right'),
+  dotContainer: document.querySelector('.dots'),
 };

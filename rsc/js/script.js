@@ -212,7 +212,7 @@ function sectionObsCallback(entries, observer) {
   const [entry] = entries;
   if (!entry.isIntersecting) return;
   entry.isIntersecting && entry.target.classList.remove('section--hidden');
-  observer.unobserve(entry); // unobserve for performance
+  observer.unobserve(section); // unobserve for performance
 }
 const sectionObserver = new IntersectionObserver(
   sectionObsCallback,
@@ -275,3 +275,17 @@ document.addEventListener('keydown', e => {
 
 // Initially display the first slide
 goToSlide(currentSlide);
+
+// ------- Slider Component Dots
+
+function createDots() {
+  domElements.slides.forEach((_, index) => {
+    domElements.dotContainer.insertAdjacentHTML(
+      'beforeend',
+      `
+    <button class="dots_dot" data-slide="${index}"></button>`
+    );
+  });
+}
+
+createDots();
