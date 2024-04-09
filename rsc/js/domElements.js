@@ -24,4 +24,9 @@ export const domElements = {
   lazyImages: document.querySelectorAll('img[data-src]'),
   // to top button
   btnToTop: document.querySelector('.btn-to-top'),
+  // slides
+  slider: document.querySelector('.slider'),
+  imageSlides: document.querySelectorAll('.slide'),
+  btnSliderL: document.querySelector('.slider__btn--left'),
+  btnSliderR: document.querySelector('.slider__btn--right'),
 };
