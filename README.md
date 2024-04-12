@@ -2,6 +2,10 @@
 
 <hr>
 
+<p align="center">
+  <img width="680" height="auto" height="300" src="./rsc/images/logo.png">
+</p>
+
 Welcome to RoboDev Pro, the ultimate solution for software engineers looking to embrace unemployment with style!
 The website is packed with cutting-edge AI features that will make you question why you ever wrote code manually.
 Want to sign up and get on the highway to unemployment, then check out our <a href="https://robodevpro.netlify.app/" target="_blank">site</a> and sign up!
