@@ -3,7 +3,7 @@
 <hr>
 
 <p align="center">
-  <img width="680" height="auto" height="300" src="./rsc/images/logo.png">
+  <img width="680" height="auto" height="300" src="./rsc/img/logo.png">
 </p>
 
 Welcome to RoboDev Pro, the ultimate solution for software engineers looking to embrace unemployment with style!
